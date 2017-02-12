@@ -13,7 +13,7 @@ import javax.swing.Timer;
 import pong.model.ball;
 import pong.model.paddle;
 
-public class Drawing extends JPanel implements ActionListener, KeyListener {
+public class Drawing extends JPanel implements ActionListener {
 	/**
 	 * 
 	 */
@@ -25,12 +25,11 @@ public class Drawing extends JPanel implements ActionListener, KeyListener {
 
 	private static paddle left, right;
 
-	public Drawing() {
+	public Drawing(int height, int width) {
 		this.setBackground(Color.black);
-		ball = new ball(this.getWidth() / 2, this.getHeight() / 2, 20, 20, 40, 40, Color.white);
-		left = new paddle(40, 40, 20, 40, Color.white);
-		right = new paddle(100, 100, 20, 40, Color.white);
-		addKeyListener(this);
+		ball = new ball(width / 2, height / 2, 40, 40, 20, 20, Color.white);
+		left = new paddle(20, height / 2, 30, 100, Color.white);
+		right = new paddle(width - 70, height / 2, 30, 100, Color.white);
 		timer.start();
 	}
 
@@ -42,6 +41,14 @@ public class Drawing extends JPanel implements ActionListener, KeyListener {
 		g.fillRect(right.getX(), right.getY(), right.getWidth(), right.getHeight());
 	}
 
+	public paddle getLeft() {
+		return left;
+	}
+
+	public paddle getRight() {
+		return right;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ball.setX(ball.getX() + ball.getxVel());
@@ -49,31 +56,4 @@ public class Drawing extends JPanel implements ActionListener, KeyListener {
 		repaint();
 	}
 
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-		System.out.println("KeyPressed");
-		if (arg0.getKeyCode() == KeyEvent.VK_UP) {
-			left.setY(left.getY() + 5);
-		} else if (arg0.getKeyCode() == KeyEvent.VK_DOWN) {
-			left.setY(left.getY() - 5);
-		}
-		if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
-			right.setY(right.getY() + 5);
-		} else if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
-			right.setY(right.getY() - 5);
-		}
-		repaint();
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		System.out.println("KeyReleased");
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		System.out.println("KeyTyped");
-	}
 }
