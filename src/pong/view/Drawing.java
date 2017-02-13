@@ -4,8 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -20,7 +18,7 @@ public class Drawing extends JPanel implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Timer timer = new Timer((1000 / 20), this);
+	private Timer timer = new Timer((1000 / 40), this);
 
 	private static ball ball;
 
@@ -28,9 +26,9 @@ public class Drawing extends JPanel implements ActionListener {
 
 	public Drawing(int height, int width) {
 		this.setBackground(Color.black);
-		ball = new ball(width / 2 + 20, height / 2 - 20, 40, 40, 20, 20, Color.white);
-		left = new paddle(60, height / 2 - 75, 30, 150, Color.white);
-		right = new paddle(width - 110, height / 2 - 75, 30, 150, Color.white);
+		ball = new ball(width / 2 + 20, height / 2 - 20, 80, 80, 10, 10, Color.white);
+		left = new paddle(60, height / 2 - 75, 30, 200, Color.white);
+		right = new paddle(width - 110, height / 2 - 75, 30, 200, Color.white);
 		timer.start();
 	}
 
@@ -60,7 +58,7 @@ public class Drawing extends JPanel implements ActionListener {
 		ball.setY(ball.getY() + ball.getyVel());
 		repaint();
 		PongCourt.DetectBallPaddleCollision();
-		PongCourt.DetectBallWallCollision(this.getWidth(), this.getHeight());
+		PongCourt.DetectBallWallCollision(this.getWidth(), this.getHeight()); 
 	}
 
 }

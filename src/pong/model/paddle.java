@@ -3,7 +3,7 @@ package pong.model;
 import java.awt.Color;
 
 public class paddle {
-	private int x, y, width, height;
+	private int x, y, width, height, score;
 
 	private Color color;
 
@@ -17,6 +17,21 @@ public class paddle {
 		this.setWidth(width);
 		this.setHeight(height);
 		this.setColor(color);
+	}
+
+	/**
+	 * @return the score
+	 */
+	public int getScore() {
+		return score;
+	}
+
+	/**
+	 * @param score
+	 *            the score to set
+	 */
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 	/**

@@ -53,14 +53,14 @@ public class GUI implements KeyListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		if (arg0.getKeyCode() == KeyEvent.VK_DOWN) {
-			Drawing.getLeft().setY(Drawing.getLeft().getY() + 15);
+			Drawing.getLeft().setY(Drawing.getLeft().getY() + 20);
 		} else if (arg0.getKeyCode() == KeyEvent.VK_UP) {
-			Drawing.getLeft().setY(Drawing.getLeft().getY() - 15);
+			Drawing.getLeft().setY(Drawing.getLeft().getY() - 20);
 		}
 		if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Drawing.getRight().setY(Drawing.getRight().getY() + 15);
+			Drawing.getRight().setY(Drawing.getRight().getY() + 20);
 		} else if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
-			Drawing.getRight().setY(Drawing.getRight().getY() - 15);
+			Drawing.getRight().setY(Drawing.getRight().getY() - 20);
 		}
 		drawPane.repaint();
 	}
@@ -72,7 +72,7 @@ public class GUI implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-
+		keyPressed(arg0);
 	}
 
 }

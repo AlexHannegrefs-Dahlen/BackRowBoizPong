@@ -3,22 +3,38 @@ package pong.model;
 import java.awt.Color;
 
 public class ball {
-	private int x, y, width, height, xVel, yVel;
-	
+	private int x, y, middleX, middleY, width, height, xVel, yVel;
+
 	private Color color;
-	
-	public ball (){
-		
+
+	public ball() {
+
 	}
-	
-	public ball(int x, int y, int width, int height, int xVel, int yVel, Color color){
+
+	public ball(int x, int y, int width, int height, int xVel, int yVel, Color color) {
 		this.setX(x);
+		this.setMiddleX(x);
+		this.setMiddleY(y);
 		this.setY(y);
 		this.setWidth(width);
 		this.setHeight(height);
 		this.setxVel(xVel);
 		this.setyVel(yVel);
 		this.setColor(color);
+	}
+
+	public void resetBall() {
+		this.setX(middleX);
+		this.setY(middleY);
+		this.setxVel(-this.getxVel());
+	}
+
+	private void setMiddleX(int middleX) {
+		this.middleX = middleX;
+	}
+
+	private void setMiddleY(int middleY) {
+		this.middleY = middleY;
 	}
 
 	/**
@@ -29,7 +45,8 @@ public class ball {
 	}
 
 	/**
-	 * @param x the x to set
+	 * @param x
+	 *            the x to set
 	 */
 	public void setX(int x) {
 		this.x = x;
@@ -43,7 +60,8 @@ public class ball {
 	}
 
 	/**
-	 * @param y the y to set
+	 * @param y
+	 *            the y to set
 	 */
 	public void setY(int y) {
 		this.y = y;
@@ -57,7 +75,8 @@ public class ball {
 	}
 
 	/**
-	 * @param width the width to set
+	 * @param width
+	 *            the width to set
 	 */
 	public void setWidth(int width) {
 		this.width = width;
@@ -71,7 +90,8 @@ public class ball {
 	}
 
 	/**
-	 * @param height the height to set
+	 * @param height
+	 *            the height to set
 	 */
 	public void setHeight(int height) {
 		this.height = height;
@@ -85,7 +105,8 @@ public class ball {
 	}
 
 	/**
-	 * @param xVel the xVel to set
+	 * @param xVel
+	 *            the xVel to set
 	 */
 	public void setxVel(int xVel) {
 		this.xVel = xVel;
@@ -99,7 +120,8 @@ public class ball {
 	}
 
 	/**
-	 * @param yVel the yVel to set
+	 * @param yVel
+	 *            the yVel to set
 	 */
 	public void setyVel(int yVel) {
 		this.yVel = yVel;
@@ -113,7 +135,8 @@ public class ball {
 	}
 
 	/**
-	 * @param color the color to set
+	 * @param color
+	 *            the color to set
 	 */
 	public void setColor(Color color) {
 		this.color = color;

@@ -26,6 +26,13 @@ public class PongCourt implements Serializable {
 		} else if (Ball.getY() < 0) {
 			Ball.setyVel(-Ball.getyVel());
 		}
+		if (Ball.getX() + Ball.getWidth() >= panelWidth) {
+			PaddleLeft.setScore(PaddleLeft.getScore() + 1);
+			Ball.resetBall();
+		} else if (Ball.getX() <= 0) {
+			PaddleRight.setScore(PaddleRight.getScore() + 1);
+			Ball.resetBall();
+		}
 	}
 
 	public static void DetectBallPaddleCollision() {
