@@ -9,6 +9,36 @@ public class GUI implements KeyListener {
 	private static JFrame frame;
 	private static Drawing drawPane;
 
+	/**
+	 * @return the frame
+	 */
+	public static JFrame getFrame() {
+		return frame;
+	}
+
+	/**
+	 * @param frame
+	 *            the frame to set
+	 */
+	public static void setFrame(JFrame frame) {
+		GUI.frame = frame;
+	}
+
+	/**
+	 * @return the drawPane
+	 */
+	public static Drawing getDrawPane() {
+		return drawPane;
+	}
+
+	/**
+	 * @param drawPane
+	 *            the drawPane to set
+	 */
+	public static void setDrawPane(Drawing drawPane) {
+		GUI.drawPane = drawPane;
+	}
+
 	public void initGUI() {
 		frame = new JFrame("Pong");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -22,30 +52,27 @@ public class GUI implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		System.out.println("KeyPressed");
 		if (arg0.getKeyCode() == KeyEvent.VK_DOWN) {
-			drawPane.getLeft().setY(drawPane.getLeft().getY() + 15);
+			Drawing.getLeft().setY(Drawing.getLeft().getY() + 15);
 		} else if (arg0.getKeyCode() == KeyEvent.VK_UP) {
-			drawPane.getLeft().setY(drawPane.getLeft().getY() - 15);
+			Drawing.getLeft().setY(Drawing.getLeft().getY() - 15);
 		}
 		if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
-			drawPane.getRight().setY(drawPane.getRight().getY() + 15);
+			Drawing.getRight().setY(Drawing.getRight().getY() + 15);
 		} else if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
-			drawPane.getRight().setY(drawPane.getRight().getY() - 15);
+			Drawing.getRight().setY(Drawing.getRight().getY() - 15);
 		}
 		drawPane.repaint();
 	}
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		System.out.println("KeyReleased");
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		System.out.println("KeyTyped");
+
 	}
 
 }
