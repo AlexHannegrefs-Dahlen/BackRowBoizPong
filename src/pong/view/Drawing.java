@@ -18,7 +18,7 @@ public class Drawing extends JPanel implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Timer timer = new Timer((25 / 5), this);
+	private Timer timer = new Timer((25/5), this);
 
 	private static ball ball;
 
@@ -26,7 +26,7 @@ public class Drawing extends JPanel implements ActionListener {
 
 	public Drawing(int height, int width) {
 		this.setBackground(Color.black);
-		ball = new ball(width / 2 + 20, height / 2 - 20, 60, 60, 5, 5, Color.white);
+		ball = new ball(width / 2 + 20, height / 2 - 20, 45, 45, 5, 5, Color.white);
 		left = new paddle(60, height / 2 - 75, 30, 200, Color.white);
 		right = new paddle(width - 110, height / 2 - 75, 30, 200, Color.white);
 		timer.start();
@@ -35,8 +35,10 @@ public class Drawing extends JPanel implements ActionListener {
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.setColor(ball.getColor());
-		g.fillOval(ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight());
+		g.fillRect(ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight());
+		g.setColor(left.getColor());
 		g.fillRect(left.getX(), left.getY(), left.getWidth(), left.getHeight());
+		g.setColor(right.getColor());
 		g.fillRect(right.getX(), right.getY(), right.getWidth(), right.getHeight());
 	}
 

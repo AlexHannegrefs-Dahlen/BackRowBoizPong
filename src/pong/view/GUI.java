@@ -52,15 +52,15 @@ public class GUI implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		if (arg0.getKeyCode() == KeyEvent.VK_DOWN) {
-			Drawing.getLeft().setY(Drawing.getLeft().getY() + 20);
-		} else if (arg0.getKeyCode() == KeyEvent.VK_UP) {
-			Drawing.getLeft().setY(Drawing.getLeft().getY() - 20);
+		if (arg0.getKeyCode() == KeyEvent.VK_DOWN && Drawing.getLeft().getY()-Drawing.getLeft().getHeight() < 900) {
+			Drawing.getLeft().setY(Drawing.getLeft().getY() + 25);
+		} else if (arg0.getKeyCode() == KeyEvent.VK_UP && Drawing.getLeft().getY() > 0) {
+			Drawing.getLeft().setY(Drawing.getLeft().getY() - 25);
 		}
-		if (arg0.getKeyCode() == KeyEvent.VK_RIGHT) {
-			Drawing.getRight().setY(Drawing.getRight().getY() + 20);
-		} else if (arg0.getKeyCode() == KeyEvent.VK_LEFT) {
-			Drawing.getRight().setY(Drawing.getRight().getY() - 20);
+		if (arg0.getKeyCode() == KeyEvent.VK_RIGHT && Drawing.getRight().getY()-Drawing.getRight().getHeight() < 900) {
+			Drawing.getRight().setY(Drawing.getRight().getY() + 25);
+		} else if (arg0.getKeyCode() == KeyEvent.VK_LEFT && Drawing.getRight().getY() > 0) {
+			Drawing.getRight().setY(Drawing.getRight().getY() - 25);
 		}
 		drawPane.repaint();
 	}
