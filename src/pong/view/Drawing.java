@@ -18,7 +18,7 @@ public class Drawing extends JPanel implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Timer timer = new Timer((1000 / 40), this);
+	private Timer timer = new Timer((25 / 5), this);
 
 	private static ball ball;
 
@@ -26,7 +26,7 @@ public class Drawing extends JPanel implements ActionListener {
 
 	public Drawing(int height, int width) {
 		this.setBackground(Color.black);
-		ball = new ball(width / 2 + 20, height / 2 - 20, 80, 80, 10, 10, Color.white);
+		ball = new ball(width / 2 + 20, height / 2 - 20, 60, 60, 5, 5, Color.white);
 		left = new paddle(60, height / 2 - 75, 30, 200, Color.white);
 		right = new paddle(width - 110, height / 2 - 75, 30, 200, Color.white);
 		timer.start();
@@ -47,8 +47,8 @@ public class Drawing extends JPanel implements ActionListener {
 	public static paddle getRight() {
 		return right;
 	}
-	
-	public static ball getBall(){
+
+	public static ball getBall() {
 		return ball;
 	}
 
@@ -58,7 +58,7 @@ public class Drawing extends JPanel implements ActionListener {
 		ball.setY(ball.getY() + ball.getyVel());
 		repaint();
 		PongCourt.DetectBallPaddleCollision();
-		PongCourt.DetectBallWallCollision(this.getWidth(), this.getHeight()); 
+		PongCourt.DetectBallWallCollision(this.getWidth(), this.getHeight());
 	}
 
 }

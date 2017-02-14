@@ -23,7 +23,7 @@ public class PongCourt implements Serializable {
 	public static void DetectBallWallCollision(int panelWidth, int panelHeight) {
 		if (Ball.getY() >= panelHeight - Ball.getHeight()) {
 			Ball.setyVel(-Ball.getyVel());
-		} else if (Ball.getY() < 0) {
+		} else if (Ball.getY() <= 0) {
 			Ball.setyVel(-Ball.getyVel());
 		}
 		if (Ball.getX() + Ball.getWidth() >= panelWidth) {
@@ -37,14 +37,14 @@ public class PongCourt implements Serializable {
 
 	public static void DetectBallPaddleCollision() {
 		if (PaddleRight.getX() - Ball.getX() <= Ball.getWidth()
-				&& Ball.getX() + Ball.getWidth() < PaddleRight.getX() + PaddleRight.getWidth()) {
+				&& Ball.getX() + Ball.getWidth() <= PaddleRight.getX() + PaddleRight.getWidth()) {
 			if (Ball.getY() > PaddleRight.getY()
 					&& Ball.getY() < PaddleRight.getY() + PaddleRight.getHeight() - Ball.getHeight()) {
 				Ball.setxVel(-Ball.getxVel());
 			}
 		} else if (PaddleLeft.getX() <= Ball.getX() && PaddleLeft.getX() + PaddleLeft.getWidth() > Ball.getX()) {
 			if (Ball.getY() > PaddleLeft.getY()
-					&& Ball.getY() < PaddleLeft.getY() + PaddleLeft.getHeight() - Ball.getHeight()) {
+					&& Ball.getY() <= PaddleLeft.getY() + PaddleLeft.getHeight() - Ball.getHeight()) {
 				Ball.setxVel(-Ball.getxVel());
 			}
 		}
