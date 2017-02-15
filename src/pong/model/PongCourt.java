@@ -1,51 +1,50 @@
 package pong.model;
 
-import java.io.Serializable;
-
 import pong.view.Drawing;
 
-public class PongCourt implements Serializable {
+public class PongCourt {
 
-	private static final long serialVersionUID = 1L;
+	private Drawing panel;
 
-	private static ball Ball = Drawing.getBall();
+	public PongCourt(Drawing panel) {
+		this.panel = panel;
+	}
 
-	private static paddle PaddleLeft = Drawing.getLeft(), PaddleRight = Drawing.getRight();
-
-	public static int Score() {
+	public int Score() {
 		return 0;
 	}
 
-	public static boolean Win() {
+	public boolean Win() {
 		return false;
 	}
 
-	public static void DetectBallWallCollision(int panelWidth, int panelHeight) {
-		if (Ball.getY() >= panelHeight - Ball.getHeight()) {
-			Ball.setyVel(-Ball.getyVel());
-		} else if (Ball.getY() <= 0) {
-			Ball.setyVel(-Ball.getyVel());
+	public void DetectBallWallCollision(int panelWidth, int panelHeight) {
+		if (panel.getBall().getY() >= panelHeight - panel.getBall().getHeight()) {
+			panel.getBall().setyVel(-panel.getBall().getyVel());
+		} else if (panel.getBall().getY() <= 0) {
+			panel.getBall().setyVel(-panel.getBall().getyVel());
 		}
-		if (Ball.getX() + Ball.getWidth() >= panelWidth) {
-			PaddleLeft.setScore(PaddleLeft.getScore() + 1);
-			Ball.resetBall();
-		} else if (Ball.getX() <= 0) {
-			PaddleRight.setScore(PaddleRight.getScore() + 1);
-			Ball.resetBall();
+		if (panel.getBall().getX() + panel.getBall().getWidth() >= panelWidth) {
+			panel.getLeft().setScore(panel.getLeft().getScore() + 1);
+			panel.getBall().resetBall();
+		} else if (panel.getBall().getX() <= 0) {
+			panel.getRight().setScore(panel.getRight().getScore() + 1);
+			panel.getBall().resetBall();
 		}
 	}
 
-	public static void DetectBallPaddleCollision() {
-		if (PaddleRight.getX() - Ball.getX() <= Ball.getWidth()
-				&& Ball.getX() + Ball.getWidth() <= PaddleRight.getX() + PaddleRight.getWidth()) {
-			if (Ball.getY() > PaddleRight.getY()
-					&& Ball.getY() < PaddleRight.getY() + PaddleRight.getHeight() - Ball.getHeight()) {
-				Ball.setxVel(-Ball.getxVel());
+	public void DetectBallPaddleCollision() {
+		if (panel.getRight().getX() - panel.getBall().getX() <= panel.getBall().getWidth() && panel.getBall().getX()
+				+ panel.getBall().getWidth() <= panel.getRight().getX() + panel.getRight().getWidth()) {
+			if (panel.getBall().getY() > panel.getRight().getY() && panel.getBall().getY() < panel.getRight().getY()
+					+ panel.getRight().getHeight() - panel.getBall().getHeight()) {
+				panel.getBall().setxVel(-panel.getBall().getxVel());
 			}
-		} else if (PaddleLeft.getX() <= Ball.getX() && PaddleLeft.getX() + PaddleLeft.getWidth() > Ball.getX()) {
-			if (Ball.getY() > PaddleLeft.getY()
-					&& Ball.getY() <= PaddleLeft.getY() + PaddleLeft.getHeight() - Ball.getHeight()) {
-				Ball.setxVel(-Ball.getxVel());
+		} else if (panel.getLeft().getX() <= panel.getBall().getX()
+				&& panel.getLeft().getX() + panel.getLeft().getWidth() > panel.getBall().getX()) {
+			if (panel.getBall().getY() > panel.getLeft().getY() && panel.getBall().getY() <= panel.getLeft().getY()
+					+ panel.getLeft().getHeight() - panel.getBall().getHeight()) {
+				panel.getBall().setxVel(-panel.getBall().getxVel());
 			}
 		}
 	}

@@ -13,16 +13,19 @@ import pong.model.ball;
 import pong.model.paddle;
 
 public class Drawing extends JPanel implements ActionListener {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Timer timer = new Timer((25/5), this);
+	private Timer timer = new Timer((25 / 5), this);
 
-	private static ball ball;
+	private ball ball;
 
-	private static paddle left, right;
+	private paddle left, right;
+
+	private PongCourt court;
 
 	public Drawing(int height, int width) {
 		this.setBackground(Color.black);
@@ -42,16 +45,24 @@ public class Drawing extends JPanel implements ActionListener {
 		g.fillRect(right.getX(), right.getY(), right.getWidth(), right.getHeight());
 	}
 
-	public static paddle getLeft() {
-		return left;
+	public void setCourt(PongCourt court) {
+		this.court = court;
 	}
 
-	public static paddle getRight() {
-		return right;
+	public PongCourt getCourt() {
+		return this.court;
 	}
 
-	public static ball getBall() {
-		return ball;
+	public paddle getLeft() {
+		return this.left;
+	}
+
+	public paddle getRight() {
+		return this.right;
+	}
+
+	public ball getBall() {
+		return this.ball;
 	}
 
 	@Override
@@ -59,8 +70,8 @@ public class Drawing extends JPanel implements ActionListener {
 		ball.setX(ball.getX() + ball.getxVel());
 		ball.setY(ball.getY() + ball.getyVel());
 		repaint();
-		PongCourt.DetectBallPaddleCollision();
-		PongCourt.DetectBallWallCollision(this.getWidth(), this.getHeight());
+		court.DetectBallPaddleCollision();
+		court.DetectBallWallCollision(this.getWidth(), this.getHeight());
 	}
 
 }
