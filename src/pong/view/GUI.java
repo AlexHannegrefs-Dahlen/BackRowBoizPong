@@ -1,5 +1,6 @@
 package pong.view;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -15,6 +16,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 
 import pong.controller.Controller;
 import pong.model.PongCourt;
@@ -70,6 +72,9 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 	 */
 	public void initGUI(Controller controller2) {
 		this.controller = controller2;
+		Font font = new Font("sans-serif", Font.PLAIN, 30);
+		UIManager.put("Menu.font", font);
+		UIManager.put("MenuItem.font", font);
 		frame = new JFrame("Pong");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,7 +95,6 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 		run = new JMenu("Run");
 		settings = new JMenu("Settings");
 		menuBar = new JMenuBar();
-
 		fileChooser = new JFileChooser();
 
 		settings.add(increaseBallVel);
@@ -107,7 +111,6 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 		menuBar.add(game);
 		menuBar.add(run);
 		menuBar.add(settings);
-		// menuBar.setFont(new Font("Monospaced", Font.PLAIN, 50));
 		frame.setJMenuBar(menuBar);
 
 		newGame.addActionListener(this);

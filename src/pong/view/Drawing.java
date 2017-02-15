@@ -66,7 +66,7 @@ public class Drawing extends JPanel implements ActionListener {
 		g.setColor(Color.WHITE);
 
 		g.drawString("Score", MiddleXScore, MiddleYScore);
-		g.drawString(court.getRightScore(), MiddleXScore + 60, MiddleYScore + 25);
+		g.drawString(court.getRightScore(), MiddleXScore + 70, MiddleYScore + 30);
 		g.drawString(court.getLeftScore(), MiddleXScore - 20, MiddleYScore + 30);
 	}
 
