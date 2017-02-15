@@ -20,7 +20,7 @@ public class Drawing extends JPanel implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private final int MiddleXScore = 100;
+	private int MiddleXScore;
 
 	private final int MiddleYScore = 100;
 
@@ -40,6 +40,7 @@ public class Drawing extends JPanel implements ActionListener {
 	 *            the height of the panel
 	 */
 	public Drawing(int height, int width) {
+		this.MiddleXScore = width / 2;
 		this.setBackground(Color.black);
 		ball = new ball(width / 2 + 20, height / 2 - 20, 45, 45, 5, 5, Color.white);
 		left = new paddle(60, height / 2 - 75, 30, 200, Color.white);
@@ -53,7 +54,7 @@ public class Drawing extends JPanel implements ActionListener {
 	 */
 	public void paint(Graphics g) {
 		super.paint(g);
-		int fontSize = 24;
+		int fontSize = 30;
 		g.setColor(ball.getColor());
 		g.fillRect(ball.getX(), ball.getY(), ball.getWidth(), ball.getHeight());
 		g.setColor(left.getColor());
@@ -65,8 +66,8 @@ public class Drawing extends JPanel implements ActionListener {
 		g.setColor(Color.WHITE);
 
 		g.drawString("Score", MiddleXScore, MiddleYScore);
-		g.drawString(court.getRightScore(), MiddleXScore+60, MiddleYScore+20);
-		g.drawString(court.getLeftScore(), MiddleXScore-20, MiddleYScore+20);
+		g.drawString(court.getRightScore(), MiddleXScore + 60, MiddleYScore + 25);
+		g.drawString(court.getLeftScore(), MiddleXScore - 20, MiddleYScore + 30);
 	}
 
 	public void setCourt(PongCourt court) {
