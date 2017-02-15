@@ -1,11 +1,12 @@
 package pong.model;
 
 import pong.view.Drawing;
+import pong.view.GUI;
 
 public class PongCourt {
 
 	private Drawing panel;
-
+	private GUI gui;
 	private int ScoreLeft = 0;
 	private int ScoreRight = 0;
 
@@ -17,16 +18,24 @@ public class PongCourt {
 	 * @param panel
 	 *            the Main Gui panel
 	 */
-	public PongCourt(Drawing panel) {
+	public PongCourt(Drawing panel, GUI gui) {
 		this.panel = panel;
+		this.gui = gui;
 	}
 
 	/**
 	 * 
 	 * @return if there is a winner
 	 */
-	public boolean Win() {
-		return false;
+	public void DetectWin() {
+		if(ScoreLeft == 11) {
+			panel.getTimer().stop();
+			gui.displayWin();
+		}
+		else if(ScoreRight == 11) {
+			panel.getTimer().stop();
+			gui.displayWin();
+		}
 	}
 
 	/**
@@ -46,13 +55,13 @@ public class PongCourt {
 		if (panel.getBall().getX() + panel.getBall().getWidth() >= panelWidth) {
 			// panel.getLeft().setScore(panel.getLeft().getScore() + 1);
 			ScoreLeft += 1;
-
 			panel.getBall().resetBall();
+			DetectWin();
 		} else if (panel.getBall().getX() <= 0) {
 			// panel.getRight().setScore(panel.getRight().getScore() + 1);
 			ScoreRight += 1;
-
 			panel.getBall().resetBall();
+			DetectWin();
 		}
 	}
 
@@ -144,5 +153,7 @@ public class PongCourt {
 		}
 		return null;
 	}
+	
+	
 
 }

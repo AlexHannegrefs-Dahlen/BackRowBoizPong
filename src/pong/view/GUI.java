@@ -1,5 +1,6 @@
 package pong.view;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -11,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import pong.model.PongCourt;
@@ -87,6 +89,7 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 
 		menuBar.add(menu);
 		menuBar.add(run);
+		// menuBar.setFont(new Font("Monospaced", Font.PLAIN, 50));
 		frame.setJMenuBar(menuBar);
 
 		newGame.addActionListener(this);
@@ -99,7 +102,7 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 
 		frame.addKeyListener(this);
 		drawPane = new Drawing(frame.getHeight(), frame.getWidth());
-		court = new PongCourt(drawPane);
+		court = new PongCourt(drawPane, this);
 		drawPane.setCourt(court);
 		frame.getContentPane().add(drawPane);
 		frame.setVisible(true);
@@ -149,7 +152,8 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == newGame) {
-
+			this.frame.dispose();
+			this.initGUI();
 		}
 
 		else if (arg0.getSource() == saveGame) {
@@ -175,7 +179,10 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 		} else if (arg0.getSource() == stop) {
 			drawPane.getTimer().stop();
 		}
+	}
 
+	public void displayWin() {
+		JOptionPane.showMessageDialog(frame, "Congratulations, you have won!");
 	}
 
 }
