@@ -56,6 +56,9 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 		this.drawPane = drawPane;
 	}
 
+	/**
+	 * initiats the GUI sets the frame sets menu items sets the panel
+	 */
 	public void initGUI() {
 		frame = new JFrame("Pong");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -86,7 +89,7 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 
 		menuBar.add(menu);
 		menuBar.add(run);
-		//menuBar.setFont(new Font("Monospaced", Font.PLAIN, 50));
+		// menuBar.setFont(new Font("Monospaced", Font.PLAIN, 50));
 		frame.setJMenuBar(menuBar);
 
 		newGame.addActionListener(this);
@@ -176,9 +179,8 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 		} else if (arg0.getSource() == stop) {
 			drawPane.getTimer().stop();
 		}
-
 	}
-	
+
 	public void displayWin() {
 		JOptionPane.showMessageDialog(frame, "Congratulations, you have won!");
 	}

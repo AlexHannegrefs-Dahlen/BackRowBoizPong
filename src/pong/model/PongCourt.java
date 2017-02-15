@@ -82,7 +82,10 @@ public class PongCourt {
 			}
 		}
 	}
-
+/**
+ * 
+ * @return the right score as a String
+ */
 	public String getRightScore() {
 		switch (ScoreRight) {
 		case 0:
@@ -114,7 +117,10 @@ public class PongCourt {
 		}
 		return null;
 	}
-
+/**
+ * 
+ * @return the left score as a String 
+ */
 	public String getLeftScore() {
 		switch (ScoreLeft) {
 		case 0:

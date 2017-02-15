@@ -69,31 +69,54 @@ public class Drawing extends JPanel implements ActionListener {
 		g.drawString(court.getRightScore(), MiddleXScore + 60, MiddleYScore + 25);
 		g.drawString(court.getLeftScore(), MiddleXScore - 20, MiddleYScore + 30);
 	}
-
+/**
+ * 
+ * @param court PongCourt
+ * sets this.court = the instnce of PongCourt
+ */
 	public void setCourt(PongCourt court) {
 		this.court = court;
 	}
-
+/**
+ * 
+ * @return the instence of court
+ */
 	public PongCourt getCourt() {
 		return this.court;
 	}
-
+/**
+ * 
+ * @return the left Paddle 
+ */
 	public paddle getLeft() {
 		return this.left;
 	}
-
+/**
+ * 
+ * @return the right Paddle
+ */
 	public paddle getRight() {
 		return this.right;
 	}
-
+/**
+ * 
+ * @return the Ball
+ */
 	public ball getBall() {
 		return this.ball;
 	}
-	
+	/**
+	 * 
+	 * @return the timer 
+	 */
 	public Timer getTimer() {
 		return this.timer;
 	}
-
+/**
+ * @Override thhe actionPreformed Method 
+ * moves the ball 
+ * calls the detectolitions method
+ */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ball.setX(ball.getX() + ball.getxVel());
