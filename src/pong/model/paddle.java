@@ -11,27 +11,25 @@ public class paddle {
 
 	}
 
+	/**
+	 * 
+	 * @param x
+	 *            the x of the paddle
+	 * @param y
+	 *            the y of the paddle
+	 * @param width
+	 *            the width of the paddle
+	 * @param height
+	 *            the height of the paddle
+	 * @param color
+	 *            the color of the paddle
+	 */
 	public paddle(int x, int y, int width, int height, Color color) {
 		this.setX(x);
 		this.setY(y);
 		this.setWidth(width);
 		this.setHeight(height);
 		this.setColor(color);
-	}
-
-	/**
-	 * @return the score
-	 */
-	public int getScore() {
-		return score;
-	}
-
-	/**
-	 * @param score
-	 *            the score to set
-	 */
-	public void setScore(int score) {
-		this.score = score;
 	}
 
 	/**

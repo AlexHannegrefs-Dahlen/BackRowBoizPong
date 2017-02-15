@@ -88,7 +88,6 @@ public class GUI implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-
 	}
 
 	@Override

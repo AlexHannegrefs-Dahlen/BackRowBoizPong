@@ -6,18 +6,37 @@ public class PongCourt {
 
 	private Drawing panel;
 
+	private int ScoreLeft = 0;
+	private int ScoreRight = 0;
+
+	public PongCourt() {
+	}
+
+	/**
+	 * 
+	 * @param panel
+	 *            the Main Gui panel
+	 */
 	public PongCourt(Drawing panel) {
 		this.panel = panel;
 	}
 
-	public int Score() {
-		return 0;
-	}
-
+	/**
+	 * 
+	 * @return if there is a winner
+	 */
 	public boolean Win() {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param panelWidth
+	 *            the width of the main panel
+	 * @param panelHeight
+	 *            the height of the main panel Detects if the ball has hit the
+	 *            top or buttem of the panel
+	 */
 	public void DetectBallWallCollision(int panelWidth, int panelHeight) {
 		if (panel.getBall().getY() >= panelHeight - panel.getBall().getHeight()) {
 			panel.getBall().setyVel(-panel.getBall().getyVel());
@@ -25,14 +44,21 @@ public class PongCourt {
 			panel.getBall().setyVel(-panel.getBall().getyVel());
 		}
 		if (panel.getBall().getX() + panel.getBall().getWidth() >= panelWidth) {
-			panel.getLeft().setScore(panel.getLeft().getScore() + 1);
+			// panel.getLeft().setScore(panel.getLeft().getScore() + 1);
+			ScoreLeft += 1;
+
 			panel.getBall().resetBall();
 		} else if (panel.getBall().getX() <= 0) {
-			panel.getRight().setScore(panel.getRight().getScore() + 1);
+			// panel.getRight().setScore(panel.getRight().getScore() + 1);
+			ScoreRight += 1;
+
 			panel.getBall().resetBall();
 		}
 	}
 
+	/**
+	 * Detects if the ball has hit the paddles
+	 */
 	public void DetectBallPaddleCollision() {
 		if (panel.getRight().getX() - panel.getBall().getX() <= panel.getBall().getWidth() && panel.getBall().getX()
 				+ panel.getBall().getWidth() <= panel.getRight().getX() + panel.getRight().getWidth()) {
@@ -48,4 +74,69 @@ public class PongCourt {
 			}
 		}
 	}
+
+	public String getRightScore() {
+		switch (ScoreRight) {
+		case 0:
+			return "0";
+		case 1:
+			return "1";
+		case 2:
+			return "2";
+		case 3:
+			return "3";
+		case 4:
+			return "4";
+		case 5:
+			return "5";
+		case 6:
+			return "6";
+		case 7:
+			return "7";
+		case 8:
+			return "8";
+		case 9:
+			return "9";
+		case 10:
+			return "10";
+		case 11:
+			return "11";
+		default:
+			break;
+		}
+		return null;
+	}
+
+	public String getLeftScore() {
+		switch (ScoreLeft) {
+		case 0:
+			return "0";
+		case 1:
+			return "1";
+		case 2:
+			return "2";
+		case 3:
+			return "3";
+		case 4:
+			return "4";
+		case 5:
+			return "5";
+		case 6:
+			return "6";
+		case 7:
+			return "7";
+		case 8:
+			return "8";
+		case 9:
+			return "9";
+		case 10:
+			return "10";
+		case 11:
+			return "11";
+		default:
+			break;
+		}
+		return null;
+	}
+
 }
