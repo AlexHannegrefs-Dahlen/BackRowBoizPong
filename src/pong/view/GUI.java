@@ -54,46 +54,49 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 		this.drawPane = drawPane;
 	}
 
+	/**
+	 * initiats the GUI sets the frame sets menu items sets the panel
+	 */
 	public void initGUI() {
 		frame = new JFrame("Pong");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
+
 		newGame = new JMenuItem("New Game");
 		saveGame = new JMenuItem("Save Game");
 		loadGame = new JMenuItem("Load Game");
 		quitGame = new JMenuItem("Quit Game");
-		
+
 		start = new JMenuItem("Start");
 		stop = new JMenuItem("Stop");
-		
+
 		menu = new JMenu("Game");
 		run = new JMenu("Run");
 		menuBar = new JMenuBar();
-		
+
 		fileChooser = new JFileChooser();
-		
+
 		menu.add(newGame);
 		menu.add(saveGame);
 		menu.add(loadGame);
 		menu.add(quitGame);
-		
+
 		run.add(start);
 		run.add(stop);
 
 		menuBar.add(menu);
 		menuBar.add(run);
 		frame.setJMenuBar(menuBar);
-		
+
 		newGame.addActionListener(this);
 		saveGame.addActionListener(this);
 		loadGame.addActionListener(this);
 		quitGame.addActionListener(this);
-		
+
 		start.addActionListener(this);
 		stop.addActionListener(this);
-		
+
 		frame.addKeyListener(this);
 		drawPane = new Drawing(frame.getHeight(), frame.getWidth());
 		court = new PongCourt(drawPane);
@@ -145,35 +148,34 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(arg0.getSource() == newGame) {
-			
+		if (arg0.getSource() == newGame) {
+
 		}
-		
-		else if(arg0.getSource() == saveGame) {
-			if(fileChooser.showSaveDialog(GUI.this) == JFileChooser.APPROVE_OPTION) {
+
+		else if (arg0.getSource() == saveGame) {
+			if (fileChooser.showSaveDialog(GUI.this) == JFileChooser.APPROVE_OPTION) {
 				File saveFile = fileChooser.getSelectedFile();
 			}
 
 		}
-		
-		else if(arg0.getSource() == loadGame) {
-			if(fileChooser.showOpenDialog(GUI.this) == JFileChooser.APPROVE_OPTION) {
+
+		else if (arg0.getSource() == loadGame) {
+			if (fileChooser.showOpenDialog(GUI.this) == JFileChooser.APPROVE_OPTION) {
 				File loadFile = fileChooser.getSelectedFile();
 			}
 
 		}
-		
-		else if(arg0.getSource() == quitGame) {
+
+		else if (arg0.getSource() == quitGame) {
 			System.exit(0);
 		}
-		
-		else if(arg0.getSource() == start) {
+
+		else if (arg0.getSource() == start) {
 			drawPane.getTimer().start();
-		}
-		else if(arg0.getSource() == stop) {
+		} else if (arg0.getSource() == stop) {
 			drawPane.getTimer().stop();
 		}
-		
+
 	}
 
 }
