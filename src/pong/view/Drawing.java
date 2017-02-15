@@ -24,7 +24,7 @@ public class Drawing extends JPanel implements ActionListener {
 
 	private final int MiddleYScore = 100;
 
-	private Timer timer = new Timer((25 / 5), this);
+	private Timer timer;
 
 	private ball ball;
 
@@ -45,7 +45,7 @@ public class Drawing extends JPanel implements ActionListener {
 		ball = new ball(width / 2 + 20, height / 2 - 20, 45, 45, 5, 5, Color.white);
 		left = new paddle(60, height / 2 - 75, 30, 200, Color.white);
 		right = new paddle(width - 110, height / 2 - 75, 30, 200, Color.white);
-		timer.start();
+		timer = new Timer((25 / 5), this);
 	}
 
 	/**
@@ -88,6 +88,10 @@ public class Drawing extends JPanel implements ActionListener {
 
 	public ball getBall() {
 		return this.ball;
+	}
+	
+	public Timer getTimer() {
+		return this.timer;
 	}
 
 	@Override

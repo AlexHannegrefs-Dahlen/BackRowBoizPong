@@ -1,14 +1,26 @@
 package pong.view;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 import pong.model.PongCourt;
 
-public class GUI implements KeyListener {
+public class GUI extends JPanel implements ActionListener, KeyListener {
 	private JFrame frame;
+	private JMenu menu, run;
+	private JMenuBar menuBar;
+	private JMenuItem start, stop, saveGame, loadGame, newGame, quitGame;
+	private JFileChooser fileChooser;
 	private Drawing drawPane;
 	private PongCourt court;
 
@@ -47,6 +59,41 @@ public class GUI implements KeyListener {
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		
+		newGame = new JMenuItem("New Game");
+		saveGame = new JMenuItem("Save Game");
+		loadGame = new JMenuItem("Load Game");
+		quitGame = new JMenuItem("Quit Game");
+		
+		start = new JMenuItem("Start");
+		stop = new JMenuItem("Stop");
+		
+		menu = new JMenu("Game");
+		run = new JMenu("Run");
+		menuBar = new JMenuBar();
+		
+		fileChooser = new JFileChooser();
+		
+		menu.add(newGame);
+		menu.add(saveGame);
+		menu.add(loadGame);
+		menu.add(quitGame);
+		
+		run.add(start);
+		run.add(stop);
+
+		menuBar.add(menu);
+		menuBar.add(run);
+		frame.setJMenuBar(menuBar);
+		
+		newGame.addActionListener(this);
+		saveGame.addActionListener(this);
+		loadGame.addActionListener(this);
+		quitGame.addActionListener(this);
+		
+		start.addActionListener(this);
+		stop.addActionListener(this);
+		
 		frame.addKeyListener(this);
 		drawPane = new Drawing(frame.getHeight(), frame.getWidth());
 		court = new PongCourt(drawPane);
@@ -88,11 +135,45 @@ public class GUI implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
+
 	}
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		keyPressed(arg0);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		if(arg0.getSource() == newGame) {
+			
+		}
+		
+		else if(arg0.getSource() == saveGame) {
+			if(fileChooser.showSaveDialog(GUI.this) == JFileChooser.APPROVE_OPTION) {
+				File saveFile = fileChooser.getSelectedFile();
+			}
+
+		}
+		
+		else if(arg0.getSource() == loadGame) {
+			if(fileChooser.showOpenDialog(GUI.this) == JFileChooser.APPROVE_OPTION) {
+				File loadFile = fileChooser.getSelectedFile();
+			}
+
+		}
+		
+		else if(arg0.getSource() == quitGame) {
+			System.exit(0);
+		}
+		
+		else if(arg0.getSource() == start) {
+			drawPane.getTimer().start();
+		}
+		else if(arg0.getSource() == stop) {
+			drawPane.getTimer().stop();
+		}
+		
 	}
 
 }
