@@ -22,9 +22,9 @@ public class ball {
 	 * @param height
 	 *            the height of the ball
 	 * @param xVel
-	 *            the balls x velosity
+	 *            the balls x velocity
 	 * @param yVel
-	 *            the balls y velosity
+	 *            the balls y velocity
 	 * @param color
 	 *            the color of the ball
 	 */
@@ -39,27 +39,30 @@ public class ball {
 		this.setyVel(yVel);
 		this.setColor(color);
 	}
-/**
- * resets the ball to the middle  
- */
+
+	/**
+	 * resets the ball to the middle
+	 */
 	public void resetBall() {
 		this.setX(middleX);
 		this.setY(middleY);
 		this.setxVel(-this.getxVel());
 	}
-/**
- * 
- * @param middleX the middle x location
- * sets the balls x to the middle 
- */
+
+	/**
+	 * 
+	 * @param middleX
+	 *            the middle x location sets the balls x to the middle
+	 */
 	private void setMiddleX(int middleX) {
 		this.middleX = middleX;
 	}
-/**
- * 
- * @param middleY the middle y location 
- * sets the ball to the middle 
- */
+
+	/**
+	 * 
+	 * @param middleY
+	 *            the middle y location sets the ball to the middle
+	 */
 	private void setMiddleY(int middleY) {
 		this.middleY = middleY;
 	}

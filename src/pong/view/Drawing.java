@@ -43,8 +43,8 @@ public class Drawing extends JPanel implements ActionListener {
 		this.MiddleXScore = width / 2;
 		this.setBackground(Color.black);
 		ball = new ball(width / 2 + 20, height / 2 - 20, 45, 45, 5, 5, Color.white);
-		left = new paddle(60, height / 2 - 75, 30, 200, Color.white);
-		right = new paddle(width - 110, height / 2 - 75, 30, 200, Color.white);
+		left = new paddle(60, height / 2 - 75, 30, 200, 30, Color.white);
+		right = new paddle(width - 110, height / 2 - 75, 30, 200, 30, Color.white);
 		timer = new Timer((25 / 5), this);
 	}
 
@@ -69,54 +69,60 @@ public class Drawing extends JPanel implements ActionListener {
 		g.drawString(court.getRightScore(), MiddleXScore + 60, MiddleYScore + 25);
 		g.drawString(court.getLeftScore(), MiddleXScore - 20, MiddleYScore + 30);
 	}
-/**
- * 
- * @param court PongCourt
- * sets this.court = the instnce of PongCourt
- */
+
+	/**
+	 * 
+	 * @param court
+	 *            PongCourt sets this.court = the instance of PongCourt
+	 */
 	public void setCourt(PongCourt court) {
 		this.court = court;
 	}
-/**
- * 
- * @return the instence of court
- */
+
+	/**
+	 * 
+	 * @return the instance of court
+	 */
 	public PongCourt getCourt() {
 		return this.court;
 	}
-/**
- * 
- * @return the left Paddle 
- */
+
+	/**
+	 * 
+	 * @return the left Paddle
+	 */
 	public paddle getLeft() {
 		return this.left;
 	}
-/**
- * 
- * @return the right Paddle
- */
+
+	/**
+	 * 
+	 * @return the right Paddle
+	 */
 	public paddle getRight() {
 		return this.right;
 	}
-/**
- * 
- * @return the Ball
- */
+
+	/**
+	 * 
+	 * @return the Ball
+	 */
 	public ball getBall() {
 		return this.ball;
 	}
+
 	/**
 	 * 
-	 * @return the timer 
+	 * @return the timer
 	 */
 	public Timer getTimer() {
 		return this.timer;
 	}
-/**
- * @Override thhe actionPreformed Method 
- * moves the ball 
- * calls the detectolitions method
- */
+
+	/**
+	 * @Override the actionPreformed Method moves the ball calls the detect
+	 *           collisions method
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ball.setX(ball.getX() + ball.getxVel());

@@ -30,10 +30,10 @@ public class PongCourt {
 	public void DetectWin() {
 		if (ScoreLeft == 11) {
 			panel.getTimer().stop();
-			gui.displayWin();
+			gui.displayWin("Left Paddle");
 		} else if (ScoreRight == 11) {
 			panel.getTimer().stop();
-			gui.displayWin();
+			gui.displayWin("Right Paddle");
 		}
 	}
 
@@ -82,10 +82,11 @@ public class PongCourt {
 			}
 		}
 	}
-/**
- * 
- * @return the right score as a String
- */
+
+	/**
+	 * 
+	 * @return the right score as a String
+	 */
 	public String getRightScore() {
 		switch (ScoreRight) {
 		case 0:
@@ -117,10 +118,11 @@ public class PongCourt {
 		}
 		return null;
 	}
-/**
- * 
- * @return the left score as a String 
- */
+
+	/**
+	 * 
+	 * @return the left score as a String
+	 */
 	public String getLeftScore() {
 		switch (ScoreLeft) {
 		case 0:

@@ -18,10 +18,14 @@ import javax.swing.JPanel;
 import pong.model.PongCourt;
 
 public class GUI extends JPanel implements ActionListener, KeyListener {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame frame;
-	private JMenu menu, run;
+	private JMenu game, run, settings;
 	private JMenuBar menuBar;
-	private JMenuItem start, stop, saveGame, loadGame, newGame, quitGame;
+	private JMenuItem start, stop, saveGame, loadGame, newGame, quitGame, increaseBallVel, decreaseBalllVel;
 	private JFileChooser fileChooser;
 	private Drawing drawPane;
 	private PongCourt court;
@@ -73,22 +77,30 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 		start = new JMenuItem("Start");
 		stop = new JMenuItem("Stop");
 
-		menu = new JMenu("Game");
+		increaseBallVel = new JMenuItem("Increase Ball Velocity");
+		decreaseBalllVel = new JMenuItem("Decrease Ball Velocity");
+
+		game = new JMenu("Game");
 		run = new JMenu("Run");
+		settings = new JMenu("Settings");
 		menuBar = new JMenuBar();
 
 		fileChooser = new JFileChooser();
 
-		menu.add(newGame);
-		menu.add(saveGame);
-		menu.add(loadGame);
-		menu.add(quitGame);
+		settings.add(increaseBallVel);
+		settings.add(decreaseBalllVel);
+
+		game.add(newGame);
+		game.add(saveGame);
+		game.add(loadGame);
+		game.add(quitGame);
 
 		run.add(start);
 		run.add(stop);
 
-		menuBar.add(menu);
+		menuBar.add(game);
 		menuBar.add(run);
+		menuBar.add(settings);
 		// menuBar.setFont(new Font("Monospaced", Font.PLAIN, 50));
 		frame.setJMenuBar(menuBar);
 
@@ -99,6 +111,9 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 
 		start.addActionListener(this);
 		stop.addActionListener(this);
+
+		increaseBallVel.addActionListener(this);
+		decreaseBalllVel.addActionListener(this);
 
 		frame.addKeyListener(this);
 		drawPane = new Drawing(frame.getHeight(), frame.getWidth());
@@ -126,15 +141,15 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		if (arg0.getKeyCode() == KeyEvent.VK_DOWN && drawPane.getLeft().getY() - drawPane.getLeft().getHeight() < 900) {
-			drawPane.getLeft().setY(drawPane.getLeft().getY() + 25);
+			drawPane.getLeft().setY(drawPane.getLeft().getY() + drawPane.getLeft().getyVel());
 		} else if (arg0.getKeyCode() == KeyEvent.VK_UP && drawPane.getLeft().getY() > 0) {
-			drawPane.getLeft().setY(drawPane.getLeft().getY() - 25);
+			drawPane.getLeft().setY(drawPane.getLeft().getY() - drawPane.getLeft().getyVel());
 		}
 		if (arg0.getKeyCode() == KeyEvent.VK_RIGHT
 				&& drawPane.getRight().getY() - drawPane.getRight().getHeight() < 900) {
-			drawPane.getRight().setY(drawPane.getRight().getY() + 25);
+			drawPane.getRight().setY(drawPane.getRight().getY() + drawPane.getRight().getyVel());
 		} else if (arg0.getKeyCode() == KeyEvent.VK_LEFT && drawPane.getRight().getY() > 0) {
-			drawPane.getRight().setY(drawPane.getRight().getY() - 25);
+			drawPane.getRight().setY(drawPane.getRight().getY() - drawPane.getRight().getyVel());
 		}
 		drawPane.repaint();
 	}
@@ -154,35 +169,33 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 		if (arg0.getSource() == newGame) {
 			this.frame.dispose();
 			this.initGUI();
-		}
-
-		else if (arg0.getSource() == saveGame) {
+		} else if (arg0.getSource() == saveGame) {
 			if (fileChooser.showSaveDialog(GUI.this) == JFileChooser.APPROVE_OPTION) {
 				File saveFile = fileChooser.getSelectedFile();
 			}
 
-		}
-
-		else if (arg0.getSource() == loadGame) {
+		} else if (arg0.getSource() == loadGame) {
 			if (fileChooser.showOpenDialog(GUI.this) == JFileChooser.APPROVE_OPTION) {
 				File loadFile = fileChooser.getSelectedFile();
 			}
-
-		}
-
-		else if (arg0.getSource() == quitGame) {
+		} else if (arg0.getSource() == quitGame)
 			System.exit(0);
+		else if (arg0.getSource() == start)
+			drawPane.getTimer().start();
+		else if (arg0.getSource() == stop)
+			drawPane.getTimer().stop();
+		else if (arg0.getSource() == increaseBallVel) {
+			if (drawPane.getBall().getxVel() < 20)
+				drawPane.getBall().setxVel(drawPane.getBall().getxVel() + 5);
+		} else if (arg0.getSource() == decreaseBalllVel) {
+			if (drawPane.getBall().getxVel() > 6)
+				drawPane.getBall().setxVel(drawPane.getBall().getxVel() - 5);
 		}
 
-		else if (arg0.getSource() == start) {
-			drawPane.getTimer().start();
-		} else if (arg0.getSource() == stop) {
-			drawPane.getTimer().stop();
-		}
 	}
 
-	public void displayWin() {
-		JOptionPane.showMessageDialog(frame, "Congratulations, you have won!");
+	public void displayWin(String winner) {
+		JOptionPane.showMessageDialog(frame, "Congratulations, " + winner + " has won!");
 	}
 
 }
