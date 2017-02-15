@@ -28,11 +28,10 @@ public class PongCourt {
 	 * @return if there is a winner
 	 */
 	public void DetectWin() {
-		if(ScoreLeft == 11) {
+		if (ScoreLeft == 11) {
 			panel.getTimer().stop();
 			gui.displayWin();
-		}
-		else if(ScoreRight == 11) {
+		} else if (ScoreRight == 11) {
 			panel.getTimer().stop();
 			gui.displayWin();
 		}
@@ -147,7 +146,5 @@ public class PongCourt {
 		}
 		return null;
 	}
-	
-	
 
 }
