@@ -111,6 +111,10 @@ public class Drawing extends JPanel implements ActionListener {
 		return this.ball;
 	}
 
+	public void setBall(ball ball) {
+		this.ball = ball;
+	}
+
 	/**
 	 * 
 	 * @return the timer
@@ -130,6 +134,16 @@ public class Drawing extends JPanel implements ActionListener {
 		repaint();
 		court.DetectBallPaddleCollision();
 		court.DetectBallWallCollision(this.getWidth(), this.getHeight());
+	}
+
+	public void setLeft(paddle left) {
+		this.left = left;
+		
+	}
+
+	public void setRight(paddle right) {
+		this.right = right;
+		
 	}
 
 }

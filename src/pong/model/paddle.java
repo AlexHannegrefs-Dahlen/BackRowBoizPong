@@ -1,8 +1,14 @@
 package pong.model;
 
 import java.awt.Color;
+import java.io.Serializable;
 
-public class paddle {
+public class paddle implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int x, y, width, height, yVel;
 
 	private Color color;

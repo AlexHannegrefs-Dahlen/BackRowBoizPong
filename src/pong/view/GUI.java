@@ -1,11 +1,12 @@
 package pong.view;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -15,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import pong.controller.Controller;
 import pong.model.PongCourt;
 
 public class GUI extends JPanel implements ActionListener, KeyListener {
@@ -29,6 +31,7 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 	private JFileChooser fileChooser;
 	private Drawing drawPane;
 	private PongCourt court;
+	private Controller controller;
 
 	/**
 	 * @return the frame
@@ -62,8 +65,11 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 
 	/**
 	 * initiats the GUI sets the frame sets menu items sets the panel
+	 * 
+	 * @param controller2
 	 */
-	public void initGUI() {
+	public void initGUI(Controller controller2) {
+		this.controller = controller2;
 		frame = new JFrame("Pong");
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -168,15 +174,32 @@ public class GUI extends JPanel implements ActionListener, KeyListener {
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getSource() == newGame) {
 			this.frame.dispose();
-			this.initGUI();
+			controller.run();
 		} else if (arg0.getSource() == saveGame) {
 			if (fileChooser.showSaveDialog(GUI.this) == JFileChooser.APPROVE_OPTION) {
 				File saveFile = fileChooser.getSelectedFile();
+				try {
+					controller.saveGame(saveFile, court, drawPane.getBall(), drawPane.getLeft(), drawPane.getRight());
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 
 		} else if (arg0.getSource() == loadGame) {
 			if (fileChooser.showOpenDialog(GUI.this) == JFileChooser.APPROVE_OPTION) {
 				File loadFile = fileChooser.getSelectedFile();
+				try {
+					controller.loadGame(loadFile, court, drawPane);
+				} catch (ClassNotFoundException | IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			}
 		} else if (arg0.getSource() == quitGame)
 			System.exit(0);

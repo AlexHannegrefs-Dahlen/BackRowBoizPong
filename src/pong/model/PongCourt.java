@@ -1,10 +1,16 @@
 package pong.model;
 
+import java.io.Serializable;
+
 import pong.view.Drawing;
 import pong.view.GUI;
 
-public class PongCourt {
+public class PongCourt implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Drawing panel;
 	private GUI gui;
 	private int ScoreLeft = 0;

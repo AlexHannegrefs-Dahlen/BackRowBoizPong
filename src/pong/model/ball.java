@@ -1,8 +1,14 @@
 package pong.model;
 
 import java.awt.Color;
+import java.io.Serializable;
 
-public class ball {
+public class ball implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private int x, y, middleX, middleY, width, height, xVel, yVel;
 
 	private Color color;
